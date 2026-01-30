@@ -1,7 +1,3 @@
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-
-from pages import inventory_page
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 

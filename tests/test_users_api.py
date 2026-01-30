@@ -15,7 +15,7 @@ def test_create_user(api_base_url):
     url = f"{api_base_url}/users"
     payload = {"name": "Pa Her", "job": "automation engineer"}
 
-    resp = requests.post(url, json==paylaod)
+    resp = requests.post(url, json=payload)
 
     assert resp.status_code == 201
     data = resp.json()

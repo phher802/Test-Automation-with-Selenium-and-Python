@@ -8,6 +8,7 @@ class BasePage:
 
     def open(self, url: str):
         self.driver.get(url)
+        
 
     def wait_for(self, condition):
         return self.wait.until(condition)
