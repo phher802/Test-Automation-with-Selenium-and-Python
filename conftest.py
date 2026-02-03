@@ -9,17 +9,15 @@ def base_url():
 
 @pytest.fixture(scope="session")
 def api_base_url():
-    #demo API for API tests
-    return "https://reqres.in/api"
+    return "https://jsonplaceholder.typicode.com"
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function") #use function instead of session to get a new browser for testing
 def driver():
     options = ChromeOptions()
     options.add_argument("--headless=new") #remove to see browser
     options.add_argument("--window-size=1280, 800")
 
     driver = webdriver.Chrome(options=options)
-    driver.implicitly_wait(5)
 
     yield driver
     driver.quit()
