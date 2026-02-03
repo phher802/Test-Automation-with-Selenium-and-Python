@@ -7,7 +7,7 @@ class LoginPage(BasePage):
     USERNAME = (By.ID, "user-name")
     PASSWORD = (By.ID, "password")
     LOGIN_BUTTON = (By.ID, "login-button")
-    ERROR_MESSAGE = (By.CSS_SELECTOR, "div.error-message-container.error h3[data-test='error]")
+    ERROR_MESSAGE = (By.CSS_SELECTOR, "div.error-message-container.error h3[data-test='error']")
 
     def open_login(self, base_url: str):
         self.open(base_url)

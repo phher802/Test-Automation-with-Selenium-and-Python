@@ -18,7 +18,11 @@ def test_invalid_login_shows_error(driver, base_url):
     login_page.open_login(base_url)
     login_page.login("standard_user", "wrong_password")
 
+    error_text = login_page.get_error_text()
+    #1) Error message is shown
+    assert "Epic sadface" in error_text, f"Unexpected error text: {error_text!r}"
+
     time.sleep(1)
-    
+    #2) We did not reach the inventory page
     assert not inventory_page.is_loaded(), "Should not land on inventory page with wrong password"
     
