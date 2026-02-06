@@ -79,3 +79,116 @@ test-automation-demo/
 ├─ pytest.ini              # Pytest configuration
 └─ README.md               # You are here
 ```
+
+---
+
+# Setup
+
+#### 1. Prerequisites
+
+    * Python 3.9+
+    * Google Chrome installed (Selenium 4 can manage ChromeDriver automatically, but having Chrome installed is required.)
+
+#### 2. Create and activate a virtual environment (optional but recommended)
+
+```bash
+python3 -m venv venv
+source venv/bin/activate    # macOS / Linux
+# venv\Scripts\activate     # Windows (PowerShell or cmd)
+```
+
+#### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# Running the Tests
+
+From the project root (`test-automation-demo/`):
+
+### Run all tests:
+
+```bash
+pytest
+```
+
+or with more verbose output:
+
+```bash
+pytest -v
+```
+
+### Run only API tests
+
+```bash
+pytest tests/test_login_ui.py tests/test_inventory_ui.py
+```
+
+### Run only API tests
+
+```bash
+pytest tests/test_users_api.py
+```
+
+---
+
+## Headless vs. Visible Browser
+
+By default, the tests run Chrome in headless mode (no visible browser window), configured in `conftest.py`:
+
+```python
+options.add_argument("--headless=new")  # remove or comment this out to see the browser
+```
+
+If you want to see the browser while the tests run:
+
+1. open `conftest.py`
+2. Comment out or remove the `--headless=new` line
+3. Re-run `pytest`
+
+---
+
+## How the Page Object Model is Used
+
+#### BasePage (`pages/base_page.py`):
+
+- Wraps the Selenium driver and a `WebDriverWait`
+- Provides helper methods like `open()` and `wait_for()`
+
+#### LoginPage (`pages/login_page.py`):
+
+- Knows how to:
+  - Open the login page
+  - Fill username/password
+  - Click the login button
+  - Read the error message on invalid login
+
+#### InventoryPage (`pages/inventory_page.py`)
+
+- Knows how to:
+  - Detect if the page is loaded
+  - Return the list of product names
+
+The tests themselves stay small and focused because the page objects encapsulate the locators and UI interactions.
+
+---
+
+## What This Project Demonstrates
+
+- Writing UI test automation in Python with Selenium and pytest
+- Writing API tests using `requests`
+- Using Fixtures to share setup like `driver` and `base_url`
+- Applying the Page Object Model to keep tests clean and maintainable
+- Verifying both happy path and error scenarios
+
+---
+
+## Possible Future Enhancements
+
+- Add more UI flows (add to car, logout, sorting, etc.)
+- Add negative API tests (validation errors, 4xx/5xx handing)
+- Generate HTML or JUnit test reports
+- Integrate with CI pipepline (e.g. GitHub Actions) to run tests on every push
