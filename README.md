@@ -86,8 +86,8 @@ test-automation-demo/
 
 #### 1. Prerequisites
 
-    * Python 3.9+
-    * Google Chrome installed (Selenium 4 can manage ChromeDriver automatically, but having Chrome installed is required.)
+- Python 3.9+
+- Google Chrome installed (Selenium 4 can manage ChromeDriver automatically, but having Chrome installed is required.)
 
 #### 2. Create and activate a virtual environment (optional but recommended)
 
@@ -121,7 +121,7 @@ or with more verbose output:
 pytest -v
 ```
 
-### Run only API tests
+### Run only UI tests
 
 ```bash
 pytest tests/test_login_ui.py tests/test_inventory_ui.py
